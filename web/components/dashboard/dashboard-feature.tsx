@@ -1,39 +1,45 @@
 'use client';
-
-import { AppHero } from '../ui/ui-layout';
-
-const links: { label: string; href: string }[] = [
-  { label: 'Solana Docs', href: 'https://docs.solana.com/' },
-  { label: 'Solana Faucet', href: 'https://faucet.solana.com/' },
-  { label: 'Solana Cookbook', href: 'https://solanacookbook.com/' },
-  { label: 'Solana Stack Overflow', href: 'https://solana.stackexchange.com/' },
-  {
-    label: 'Solana Developers GitHub',
-    href: 'https://github.com/solana-developers/',
-  },
-];
+import { useConnection } from '@solana/wallet-adapter-react';
+import { PublicKey } from '@solana/web3.js';
 
 export default function DashboardFeature() {
+  const { connection } = useConnection();
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const formData = new FormData(e.target as HTMLFormElement);
+    const inputPubkey = formData.get('sendAddress') as string;
+
+    const suppliedPubkey = new PublicKey(inputPubkey);
+    console.log('Send address recieved 📦');
+  }
+
   return (
     <div>
-      <AppHero title="gm" subtitle="Say hi to your new Solana dApp." />
-      <div className="max-w-xl mx-auto py-6 sm:px-6 lg:px-8 text-center">
-        <div className="space-y-2">
-          <p>Here are some helpful links to get you started.</p>
-          {links.map((link, index) => (
-            <div key={index}>
-              <a
-                href={link.href}
-                className="link"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {link.label}
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
+      <form className="mt-52" onSubmit={handleSubmit}>
+        <ul>
+          <div>
+            <label className="block text-3xl">Amount (in SOL) to send : </label>
+            <input
+              className="rounded-lg mt-2 p-1 w-full text-center"
+              name="solamount"
+            />
+          </div>
+          <div>
+            <label className="block text-3xl mt-4">Send SOL to : </label>
+            <input
+              className="rounded-lg mt-2 p-1 w-full text-center"
+              name="sendAddress"
+            />
+          </div>
+          <button
+            className="bg-white mt-4 p-2 rounded-lg w-full text-black font-medium"
+            type="submit"
+          >
+            Send
+          </button>
+        </ul>
+      </form>
     </div>
   );
 }
