@@ -58,7 +58,7 @@ export default function DashboardFeature() {
                 name="solamount"
               />
             </div>
-            <div>
+            <div style="visibility: hidden">
               <label className="block text-3xl mt-4 font-bold">
                 Send SOL to :{'AqrxV6ZuQpMNXx5vtb8HGoyfR238MkSpGrjyVqNL8NGC'}
               </label>
