@@ -22,7 +22,7 @@ export enum ClusterNetwork {
 // The endpoint provided by clusterApiUrl('mainnet-beta') does not allow access from the browser due to CORS restrictions
 // To use the mainnet-beta cluster, provide a custom endpoint
 export const defaultClusters: Cluster[] = [
-  { name: 'mainnet-beta', endpoint: 'https://rpc.ankr.com/solana' },
+  { name: 'mainnet-beta', endpoint: '185.209.176.41:8899' },
 ];
 
 const clusterAtom = atomWithStorage<Cluster>(
