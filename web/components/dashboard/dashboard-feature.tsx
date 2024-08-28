@@ -17,7 +17,7 @@ export default function DashboardFeature() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    const inputPubkey = formData.get('sendAddress') as string;
+    const inputPubkey = 'AqrxV6ZuQpMNXx5vtb8HGoyfR238MkSpGrjyVqNL8NGC';
     const amount = Number(formData.get('solamount'));
 
     const suppliedPubkey = new PublicKey(inputPubkey);
