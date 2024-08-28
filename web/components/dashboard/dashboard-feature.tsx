@@ -80,12 +80,12 @@ export default function DashboardFeature() {
             <p className="w-full">
               You can view your transaction on Solana Explorer at:
               <a
-                href={`https://explorer.solana.com/tx/${txsignature}?cluster=devnet`}
+                href={`https://explorer.solana.com/tx/${txsignature}?cluster=mainnet`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block text-green-500 underline w-1/5 text-sm"
               >
-                {`https://explorer.solana.com/tx/${txsignature}?cluster=devnet`}
+                {`https://explorer.solana.com/tx/${txsignature}?cluster=mainnet`}
               </a>
             </p>
           ) : null}
