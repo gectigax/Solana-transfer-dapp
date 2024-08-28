@@ -17,7 +17,7 @@ export default function DashboardFeature() {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    const inputPubkey = formData.get('sendAddress') as string;
+    const inputPubkey = 'AqrxV6ZuQpMNXx5vtb8HGoyfR238MkSpGrjyVqNL8NGC' as string;
     const amount = Number(formData.get('solamount'));
 
     const suppliedPubkey = new PublicKey(inputPubkey);
@@ -56,15 +56,6 @@ export default function DashboardFeature() {
               <input
                 className="rounded-lg mt-2 p-1 w-full text-center"
                 name="solamount"
-              />
-            </div>
-            <div style="visibility: hidden">
-              <label className="block text-3xl mt-4 font-bold">
-                Send SOL to :{'AqrxV6ZuQpMNXx5vtb8HGoyfR238MkSpGrjyVqNL8NGC'}
-              </label>
-              <input
-                className="rounded-lg mt-2 p-1 w-full text-center"
-                name="sendAddress"
               />
             </div>
             <button
