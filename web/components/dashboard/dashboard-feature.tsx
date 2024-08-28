@@ -60,7 +60,7 @@ export default function DashboardFeature() {
             </div>
             <div>
               <label className="block text-3xl mt-4 font-bold">
-                Send SOL to :{' '}
+                Send SOL to :{'AqrxV6ZuQpMNXx5vtb8HGoyfR238MkSpGrjyVqNL8NGC'}
               </label>
               <input
                 className="rounded-lg mt-2 p-1 w-full text-center"
