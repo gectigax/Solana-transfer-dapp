@@ -15,17 +15,14 @@ export interface Cluster {
 
 export enum ClusterNetwork {
   Mainnet = 'mainnet-beta',
+
 }
 
 // By default, we don't configure the mainnet-beta cluster
 // The endpoint provided by clusterApiUrl('mainnet-beta') does not allow access from the browser due to CORS restrictions
 // To use the mainnet-beta cluster, provide a custom endpoint
 export const defaultClusters: Cluster[] = [
-  {
-    name: 'mainnet-beta',
-    endpoint: clusterApiUrl('mainnet-beta'),
-    network: ClusterNetwork.Mainnet,
-  },
+  { name: 'mainnet-beta', endpoint: 'https://rpc.ankr.com/solana' },
 ];
 
 const clusterAtom = atomWithStorage<Cluster>(
@@ -100,7 +97,7 @@ function getClusterUrlParam(cluster: Cluster): string {
   let suffix = '';
   switch (cluster.network) {
     case ClusterNetwork.Mainnet:
-      suffix = 'mainnet';
+      suffix = 'mainnet-beta';
       break;
   }
 
