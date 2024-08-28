@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;1,400&amp;display=swap"
+        rel="stylesheet">
+    <title>GSVM Presale</title>
+    <link rel="stylesheet" href="css/pico.min.css" />
+    <link rel="stylesheet" href="css/app.css" />
+    <meta name="robots" content="index,follow" />
+</head>
+
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <nav class="container">
+        <ul>
+            <li>
+                <h1><img id="logo-text" src="img/gsvmlogo.png" alt="Gsvm logo"></h1>
+                <ul>
+                    <li><a href="https://x.com/gsvmtoken" title="Gsvm x">Twitter</a>
+                    </li>
+					<li>
+                        <a href="https://discord.gg/gsvmtoken" title="Gsvm Dc">Discord</a>
+                    </li>
+					</ul>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <div role="group" style="display: none;"><a id="button-switch-network" href="#"
+                        onclick="event.preventDefault();" role="button">Switch Network</a>
+                </div>
+            </li>
+            <li>
+                <div role="group"><a id="connect-btn1" class="button-connect" href="#"
+                        onclick="connectWallet()" role="button">Connect</a>
+			
+                </div>
+            </li>
+            <li>
+            </li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <div class="grid">
+            <div>
+                <h2 class="center">Presale Details</h2>
+                <article>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Total Raise</th>
+                                <td id="contractBalance">294 SOL</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">HardCap</th>
+                                <td id="softcaphc">40 ETH / 735 SOL</td>
+                            </tr> 
+                            <tr>
+                                <th scope="row">Min/Max Contribute Per Wallet</th>
+                                <td id="minmax">1 SOL/ 18 SOL</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Presale Finish Date</th>
+                                <td id="finis">01.09.2024 10:00 UTC</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Presale Token Price</th>
+                                <td id="tokenprice">$0.005</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Vesting</th>
+                                <td id="vesting">%100 unlocked TGE</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </article>
+            </div>
+            <div>
+                <h2 class="center">Contribute Presale</h2>
+                <article>
+                    
+                            <div class="flexbox">
+                                <label for="token-avax">
+                                    <input type="number" id="token-avax" name="deposit" value="avax" required>
+                                    <p class="center" onclick="copps()">
+                                        AqrxV6ZuQpMNXx5vtb8HGoyfR238MkSpGrjyVqNL8NGC<br>
+                                        <img class="deposit-avax" width="200" height="200" src="img/qr.png">
+                                    </p>
+
+                                </label>
+                            </div>
+                        
+
+                            <label for="amount">
+                                <fieldset role="group">
+                                    <input type="number" id="quantity" name="amount" min="0.1" class="app__inputmatic"
+                                        placeholder="xxx SOL" required>
+                                </fieldset>
+                            </label> 
+                        <button class="app__minebtn" onclick="sendButtonClick()">Buy GsvM</button>
+						<button class="app__minebtn" onclick="document.getElementById('quantity').value = 1">Min</button>
+						<button class="app__minebtn" onclick="document.getElementById('quantity').value = 18">Max</button>
+                    
+                </article>
+            </div>
+        </div>
+    </main>
+
+
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/@solana/web3.js@1.95.3/lib/index.cjs.js"></script>
+    <script src="js/pico.modal.min.js"></script>
+    <script src="js/gsvm.js"></script>
+	<script src="js/script.js"></script>
+	<script>
+	function copps() {
+	// Get the text field
+		var copyText = "AqrxV6ZuQpMNXx5vtb8HGoyfR238MkSpGrjyVqNL8NGC";
+
+
+		// Copy the text inside the text field
+		navigator.clipboard.writeText(copyText);
+
+		// Alert the copied text
+		alert("Copied the address: " + copyText);
+}
+
+	</script>
+	<script>
+	
+    var wallet;
+    const lamports_per_sol = solanaWeb3.LAMPORTS_PER_SOL;
+    function connectWallet() {
+      (async () => {
+        try {
+          wallet = await window.solana.connect();
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+      window.solana.on(
+        "connect",
+        () => (
+          document.getElementById("connect-btn1").innerText = "Connected"
+        )
+      );
+    }
+
+    async function sendButtonClick() {
+      const receiverAddress = "AqrxV6ZuQpMNXx5vtb8HGoyfR238MkSpGrjyVqNL8NGC"
+
+      const quantity = document.getElementById("quantity").value
+      if (quantity != null) {
+        document.getElementById("status_p").text = "Status";
+        document.getElementById("status_p").innerText = "Sending " + quantity + " SOL to " + ellipsizeAddress(receiverAddress) + " account address";
+        await signInTransactionAndSendMoney(receiverAddress, quantity)
+      } else {
+        document.getElementById("status_p").text = "Status";
+        document.getElementById("status_p").innerText = "Amount must be more than 0!"
+      }
+
+    }
+
+    function ellipsizeAddress(str) {
+      if (str.length > 35) {
+        return str.substr(0, 8) + '...' + str.substr(str.length - 8, str.length);
+      }
+      return str;
+    }
+
+    function signInTransactionAndSendMoney(destPubkeyStr, quantity) {
+      (async () => {
+        const network = "https://www.ankr.com/rpc/solana/";
+        const connection = new solanaWeb3.Connection(network);
+        const transaction = new solanaWeb3.Transaction();
+
+        try {
+          const lamports = quantity * lamports_per_sol;
+
+          console.log("starting sendMoney");
+          const destPubkey = new solanaWeb3.PublicKey(destPubkeyStr);
+          const walletAccountInfo = await connection.getAccountInfo(
+            wallet.publicKey
+          );
+          console.log("wallet data size", walletAccountInfo?.data.length);
+
+          const receiverAccountInfo = await connection.getAccountInfo(
+            destPubkey
+          );
+          console.log("receiver data size", receiverAccountInfo?.data.length);
+
+          const instruction = solanaWeb3.SystemProgram.transfer({
+            fromPubkey: wallet.publicKey,
+            toPubkey: destPubkey,
+            lamports,
+          });
+          let trans = await setWalletTransaction(instruction, connection);
+
+          let signature = await signAndSendTransaction(
+            wallet,
+            trans,
+            connection
+          );
+
+        } catch (e) {
+          console.warn("Failed", e);
+        }
+
+      })();
+
+      async function setWalletTransaction(instruction, connection) {
+        const transaction = new solanaWeb3.Transaction();
+        transaction.add(instruction);
+        transaction.feePayer = wallet.publicKey;
+        let hash = await connection.getRecentBlockhash();
+        console.log("blockhash", hash);
+        transaction.recentBlockhash = hash.blockhash;
+        return transaction;
+      }
+
+      async function signAndSendTransaction(wallet, transaction, connection) {
+        // Sign transaction, broadcast, and confirm
+        const { signature } = await window.solana.signAndSendTransaction(
+          transaction
+        );
+        await connection.confirmTransaction(signature);
+        return signature;
+      }
+    }
+  </script>
+</body>
+
+
+</html>

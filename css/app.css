@@ -1,0 +1,114 @@
+[data-theme=light],
+:root:not([data-theme=dark]) {
+    --pico-text-selection-color: rgba(5, 162, 162, 0.25);
+    --pico-primary: #A2F99E;
+    --pico-primary-background: #A2F99E;
+    --pico-primary-underline: rgba(4, 120, 120, 0.5);
+    --pico-primary-hover: #025d5d;
+    --pico-primary-hover-background: #046a6a;
+    --pico-primary-focus: rgba(5, 162, 162, 0.5);
+    --pico-primary-inverse: #fff;
+}
+
+@media only screen and (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --pico-background-color: #121212;
+        --pico-text-selection-color: rgba(10, 177, 177, 0.1875);
+        --pico-primary: #A2F99E;
+        --pico-primary-background: #A2F99E;
+        --pico-primary-underline: rgba(10, 177, 177, 0.5);
+        --pico-primary-hover: #EB1C2F;
+        --pico-primary-hover-background: #EB1C2F;
+        --pico-primary-focus: rgba(10, 177, 177, 0.375);
+        --pico-primary-inverse: #fff;
+    }
+}
+
+[data-theme=dark] {
+    --pico-background-color: #121212;
+    --pico-text-selection-color: rgba(10, 177, 177, 0.1875);
+    --pico-primary: #A2F99E;
+    --pico-primary-background: #A2F99E;
+    --pico-primary-underline: rgba(10, 177, 177, 0.5);
+    --pico-primary-hover: #EB1C2F;
+    --pico-primary-hover-background: #EB1C2F;
+    --pico-primary-focus: rgba(10, 177, 177, 0.375);
+    --pico-primary-inverse: #fff;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.center, th {
+    text-align: center;
+}
+
+.right {
+    text-align: right;
+}
+
+.bold {
+    font-weight: 900;
+}
+
+.small {
+    font-size: 0.775em !important;
+    font-style: italic !important;
+}
+
+.flexbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flexbox label {
+    display: inline-block;
+    width: 180px;
+    height: auto;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+/* HIDE RADIO */
+input#token-avax,
+input#token-mad {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* IMAGE STYLES */
+input#token-avax+p>img,
+input#token-mad+p>img {
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+input#token-avax[type=radio]:checked+p>img,
+input#token-mad[type=radio]:checked+p>img {
+    outline: 4px solid var(--pico-primary-background);
+    background-color: var(--pico-primary-background);
+}
+
+img.deposit-avax,
+img.deposit-mad {
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+    outline: 4px solid #fff;
+    background-color: #fff;
+}
